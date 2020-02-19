@@ -1,0 +1,24 @@
+name: "Unit tests"
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  unit:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        go: ['1.13.x']
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        submodules: true
+    - name: Set up Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+    - name: "Unit Tests"
+      run: go test -cover -race ./...
