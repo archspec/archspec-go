@@ -24,10 +24,11 @@ jobs:
       with:
         go-version: ${{ matrix.go }}
     - name: "Unit Tests"
-      run: go test -coverprofile=coverage.txt -race ./...
+      run: go test -coverprofile=coveragetxt -race ./...
     - name: Upload to codecov.io
       uses: codecov/codecov-action@v1.0.4
+      if: github.event_name == 'push'
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.txt
+        file: ./coveragetxt
         flags: unittests
