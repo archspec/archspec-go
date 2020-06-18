@@ -4,10 +4,10 @@
 # Archspec (Go bindings)
 Archspec aims at providing a standard set of human-understandable labels for
 various aspects of a system architecture  like CPU, network fabrics, etc. and
-APIs to detect, query and compare them. 
+APIs to detect, query and compare them.
 
-This project grew out of [Spack](https://spack.io/) and is currently under 
-active development. At present it supports APIs to detect and model 
+This project grew out of [Spack](https://spack.io/) and is currently under
+active development. At present it supports APIs to detect and model
 compatibility relationships among different CPU microarchitectures.
 
 ## License
@@ -19,9 +19,11 @@ option.
 All new contributions must be made under both the MIT and Apache-2.0
 licenses.
 
-See [LICENSE-MIT](https://github.com/archspec/archspec/blob/master/LICENSE-MIT),
-[LICENSE-APACHE](https://github.com/archspec/archspec/blob/master/LICENSE-APACHE),
-[COPYRIGHT](https://github.com/archspec/archspec/blob/master/COPYRIGHT), and
-[NOTICE](https://github.com/archspec/archspec/blob/master/NOTICE) for details.
+See [LICENSE-MIT](https://github.com/archspec/archspec-go/blob/master/LICENSE-MIT),
+[LICENSE-APACHE](https://github.com/archspec/archspec-go/blob/master/LICENSE-APACHE),
+[COPYRIGHT](https://github.com/archspec/archspec-go/blob/master/COPYRIGHT), and
+[NOTICE](https://github.com/archspec/archspec-go/blob/master/NOTICE) for details.
 
 SPDX-License-Identifier: (Apache-2.0 OR MIT)
+
+LLNL-CODE-811653
