@@ -6,8 +6,6 @@
 package cpu
 
 import (
-	"fmt"
-
 	"github.com/scylladb/go-set/strset"
 )
 
@@ -28,7 +26,6 @@ func parseFeatureAliases() map[string]aliasPredicate {
 			Families: *strset.New(value.Families...),
 		}
 	}
-	fmt.Println(aliases)
 	return aliases
 }
 
