@@ -13,16 +13,16 @@ const cross = "\u2717"
 func TestAncestors(t *testing.T) {
 
 	testTargets := map[string]int{
-		"icelake":     13,
+		"icelake":     16,
 		"k10":         1,
-		"steamroller": 3,
+		"steamroller": 4,
 	}
 
 	for name, expected := range testTargets {
 		t.Run(name, func(t *testing.T) {
 			tgt := TARGETS[name]
 			if len(tgt.Ancestors()) != expected {
-				t.Error(name, cross)
+				t.Error(name, "got", len(tgt.Ancestors()), ", but expected", expected, cross)
 				return
 			}
 			t.Log(name, tick)

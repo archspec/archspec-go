@@ -1,8 +1,5 @@
 module github.com/archspec/archspec-go
 
-go 1.13
+go 1.19
 
-require (
-	github.com/rakyll/statik v0.1.6
-	github.com/scylladb/go-set v1.0.2
-)
+require github.com/scylladb/go-set v1.0.2
