@@ -13,22 +13,21 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        go: ['1.13.x']
+        go: ['^1.19.0']
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
       with:
         submodules: true
     - name: Set up Go
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go }}
     - name: "Unit Tests"
       run: go test -coverprofile=coveragetxt -race ./...
     - name: Upload to codecov.io
-      uses: codecov/codecov-action@v1.0.4
+      uses: codecov/codecov-action@v3
       if: github.event_name == 'push'
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coveragetxt
         flags: unittests
