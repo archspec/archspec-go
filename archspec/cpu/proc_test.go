@@ -56,12 +56,31 @@ func TestProcInfoFiles(t *testing.T) {
 	maHW, err = ParseCPUInfo(cpuinfo)
 	assert.NoError(t, err)
 	assert.Equal(t, "zen", maHW.Name, "wrong arch: %v", maHW)
+	// Zen3
 	cpuinfo, err = ParseTestFile("../json/tests/targets/linux-ubuntu20.04-zen3")
 	assert.NoError(t, err)
 	maHW, err = ParseCPUInfo(cpuinfo)
 	assert.NoError(t, err)
 	assert.Equal(t, "zen3", maHW.Name)
+}
 
+func TestParse_Family(t *testing.T) {
+	cpuinfo, err := ParseTestFile("../json/tests/targets/linux-rhel7-zen")
+	assert.NoError(t, err)
+	maHW, err := ParseCPUInfo(cpuinfo)
+	assert.NoError(t, err)
+	assert.Equal(t, "zen", maHW.Name, "wrong arch: %v", maHW)
+	assert.Len(t, maHW.Parents, 1)
+	assert.Equal(t, "x86_64_v3", maHW.Parents[0].Name)
+	// Zen3
+	cpuinfo, err = ParseTestFile("../json/tests/targets/linux-ubuntu20.04-zen3")
+	assert.NoError(t, err)
+	maHW, err = ParseCPUInfo(cpuinfo)
+	assert.NoError(t, err)
+	assert.Equal(t, "zen3", maHW.Name)
+	// TODO: How can I get the genric architecture from the cpuinfo?
+	// -> Iterate through the parents and find a generic one?
+	assert.Equal(t, "zen2", maHW.Parents[0].Name)
 }
 
 func ParseTestFile(fname string) (map[string]string, error) {

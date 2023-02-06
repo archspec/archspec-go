@@ -70,13 +70,29 @@ func addItem(targets map[string]Microarchitecture, name string, value jMicroarch
 }
 
 func MicroarchFromJMA(name string, jma jMicroarchitecture) Microarchitecture {
-	return Microarchitecture{
+	ma := Microarchitecture{
 		Name:       name,
 		Vendor:     jma.Vendor,
 		Features:   *strset.New(jma.Features...),
 		Generation: jma.Generation,
 		Parents:    make([]Microarchitecture, 0),
 	}
+	switch jma.From.(type) {
+	case nil:
+		// Nothing to do, this is an architecture family like x86_64 or AArch64
+	case string:
+		// The microarchitecture has a single parent
+		p := Microarchitecture{Name: jma.From.(string)}
+		ma.Parents = append(ma.Parents, p)
+	case []interface{}:
+		// The microarchitecture has a multiple parents (e.g. icelake)
+		for _, item := range jma.From.([]interface{}) {
+			p := Microarchitecture{Name: item.(string)}
+			ma.Parents = append(ma.Parents, p)
+		}
+	}
+
+	return ma
 }
 
 // Ancestors returns the list of all the ancestors of the current microarchitecture

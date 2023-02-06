@@ -3,6 +3,7 @@ module github.com/archspec/archspec-go
 go 1.19
 
 require (
+	github.com/dominikbraun/graph v0.15.1
 	github.com/scylladb/go-set v1.0.2
 	github.com/stretchr/testify v1.8.1
 )
