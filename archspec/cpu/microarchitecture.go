@@ -64,13 +64,18 @@ func addItem(targets map[string]Microarchitecture, name string, value jMicroarch
 		}
 		parents = append(parents, targets[pname])
 	}
+	ma := MicroarchFromJMA(name, value)
+	ma.Parents = parents
+	targets[name] = ma
+}
 
-	targets[name] = Microarchitecture{
+func MicroarchFromJMA(name string, jma jMicroarchitecture) Microarchitecture {
+	return Microarchitecture{
 		Name:       name,
-		Vendor:     value.Vendor,
-		Features:   *strset.New(value.Features...),
-		Generation: value.Generation,
-		Parents:    parents,
+		Vendor:     jma.Vendor,
+		Features:   *strset.New(jma.Features...),
+		Generation: jma.Generation,
+		Parents:    make([]Microarchitecture, 0),
 	}
 }
 
