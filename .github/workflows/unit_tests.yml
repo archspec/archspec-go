@@ -26,7 +26,7 @@ jobs:
     - name: "Unit Tests"
       run: go test -coverprofile=coveragetxt -race ./...
     - name: Upload to codecov.io
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       if: github.event_name == 'push'
       with:
         file: ./coveragetxt
