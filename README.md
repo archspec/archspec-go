@@ -1,4 +1,4 @@
-[![](https://github.com/archspec/archspec-go/workflows/Unit%20tests/badge.svg)](https://github.com/archspec/archspec-go/actions)
+[![Unit tests](https://github.com/archspec/archspec-go/actions/workflows/unit_tests.yml/badge.svg)](https://github.com/archspec/archspec-go/actions/workflows/unit_tests.yml)
 [![codecov](https://codecov.io/gh/archspec/archspec-go/branch/master/graph/badge.svg)](https://codecov.io/gh/archspec/archspec-go)
 
 # Archspec (Go bindings)
