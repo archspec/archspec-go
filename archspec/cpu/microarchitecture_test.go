@@ -5,7 +5,10 @@
 
 package cpu
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 const tick = "\u2713"
 const cross = "\u2717"
@@ -131,6 +134,42 @@ func TestCompatibleWith(t *testing.T) {
 				return
 			}
 			t.Log(target, "not compatible with", earlierUarch, tick)
+		})
+	}
+}
+
+func TestCompilers(t *testing.T) {
+	testTargets := map[string]int{
+		"icelake":     8,
+		"k10":         7,
+		"steamroller": 7,
+		"thunderx2":   2,
+		"power8le":    3,
+	}
+
+	for target, count := range testTargets {
+		t.Run(target, func(t *testing.T) {
+			tgt := TARGETS[target]
+			fmt.Printf("Found %d in family %s\n", len(tgt.Compilers), tgt.Name)
+
+			// Ensure fields are not empty!
+			for _, compilers := range tgt.Compilers {
+				for _, compiler := range compilers {
+					if compiler.Flags == "" {
+						t.Error(target, cross)
+						return
+					}
+					if compiler.Versions == "" {
+						t.Error(target, cross)
+						return
+					}
+				}
+			}
+			if len(tgt.Compilers) != count {
+				t.Error(target, cross)
+				return
+			}
+			t.Log(target, tick)
 		})
 	}
 }
