@@ -21,7 +21,13 @@ type jMicroarchitecture struct {
 	Vendor     string                 `json:"vendor"`
 	Features   []string               `json:"features"`
 	Generation int                    `json:"generation"`
-	Compilers  map[string]interface{} `json:"compilers"`
+	Compilers  map[string][]jCompiler `json:"compilers,omitempty"`
+}
+
+type jCompiler struct {
+	Name     string `json:"name,omitempty"`
+	Flags    string `json:"flags,omitempty"`
+	Versions string `json:"versions,omitempty"`
 }
 
 type jFeatureAlias struct {

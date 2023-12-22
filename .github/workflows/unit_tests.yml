@@ -7,7 +7,6 @@ on:
   schedule:
   - cron: "0 4 * * *"
 
-
 jobs:
   unit:
     strategy:

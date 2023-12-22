@@ -18,6 +18,7 @@ type Microarchitecture struct {
 	Vendor     string
 	Features   strset.Set
 	Generation int
+	Compilers  map[string][]jCompiler
 }
 
 // TARGETS is a list of all the CPU microarchitectures known to the package
@@ -71,6 +72,7 @@ func addItem(targets map[string]Microarchitecture, name string, value jMicroarch
 		Features:   *strset.New(value.Features...),
 		Generation: value.Generation,
 		Parents:    parents,
+		Compilers:  value.Compilers,
 	}
 }
 
